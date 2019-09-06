@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>【线代学习笔记】向量与矩阵的乘法（Matrix-Vector Product） | 生信撰的博客</title>
+<meta name="description" content="never stop playing！！！">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://shengxinzhuan.github.io//favicon.ico?v=1567746757242">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://shengxinzhuan.github.io//styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://shengxinzhuan.github.io/">
+        <img src="https://shengxinzhuan.github.io//images/avatar.png?v=1567746757242" class="site-logo">
+        <h1 class="site-title">生信撰的博客</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      never stop playing！！！
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://shengxinzhuan.github.io//atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">【线代学习笔记】向量与矩阵的乘法（Matrix-Vector Product）</h2>
+            <div class="post-date">2019-09-06</div>
+            
+              <div class="feature-container" style="background-image: url('https://shengxinzhuan.github.io//post-images/xian-dai-xue-xi-bi-ji-xiang-liang-yu-ju-zhen-de-cheng-fa-matrix-vector-product.jpg')">
+              </div>
+            
+            <div class="post-content">
+              <p>前言：学不求一次之多，而贵在周周复省。虽然时间很零碎，但也不强求自己能一天学多少，争取每天积累一点就行。<br>
+教程：李宏毅（Hung-yi Lee）的Linear Equations视频教程<br>
+ppt地址：http://speech.ee.ntu.edu.tw/~tlkagk/courses_LA18.html<br>
+视频地址：https://www.bilibili.com/video/av31780632/?p=5<br>
+由于想系统而深入学习机器学习的东西，所以将本科没有上过的线代学习一下，所以才有了这个读书笔记。<br>
+一开始看到这个英文标题其实有点懵逼，Matrix-Vector product，什么东西来着？？？<br>
+后面看到这张图，才意识到是在讲什么东西<br>
+<img src="https://shengxinzhuan.github.io//post-images/1567746635779.jpg" alt=""><br>
+原来是讲矩阵与向量相乘<br>
+那么怎么理解这个东西呢？<br>
+本来我个人的理解是这样的，矩阵A相对于向量x，其实是一个高维跟低维的，就类似面跟点的关系，通过与A相乘，就是将x以A的维度去衡量x，使得x的有一个更直观的结果呈现在面前。<br>
+后面李老师提到了Linear System的思维去理解这个东西<img src="https://shengxinzhuan.github.io//post-images/1567746657377.jpg" alt=""><br>
+emmm，果然是类似的东西<br>
+而后李老师又从两个角度对product进行了阐述，分别是row aspect跟column aspect两个层面。</p>
+<pre><code>###以解这个两个未知数组的题目为例
+x1+4x2=b1
+-3x1+2x2 = b2
+###这个东西其实就是可以写成矩阵跟向量的相乘的形式
+A=[(1，4)(-3，2)]
+###而向量则是x1与x2所组成的
+x=（x1，x2）
+###将x投进A这个Linear System里面，那么当x1等于-2，x2等于0.5时，如何进行评价
+</code></pre>
+<p>首先是Row aspect<img src="https://shengxinzhuan.github.io//post-images/1567746673135.jpg" alt=""><br>
+由于row1与x垂直，所以b1明显就为0，而row2与x相乘，结果为7，故而b2就为7<br>
+<img src="https://shengxinzhuan.github.io//post-images/1567746687775.jpg" alt=""><br>
+让row1与x相乘，得到（-2,6），让row2跟x相乘，得到（2,1），将这两个向量合起来，正好也是（0,7）<br>
+虽然角度不一样，但最终结果是一致的，而计算过程其实正是在矩阵的某一维度中分解之后取合并，这个过程其实理解了就不会很懵逼。<br>
+而矩阵能与向量相乘的前提条件，两者必须是matched的，其实也很好理解，只有在矩阵最低维度与向量相同时，两者才可能在一个向量空间中进行运算。<br>
+接着就是一些运算的法则，这个其实也蛮容易理解的<br>
+<img src="https://shengxinzhuan.github.io//post-images/1567746708320.jpg" alt=""><br>
+最后的话，提到了一个比较有意识的法则，即Ax=Bx，则A与B是相等的，这个其实我还不怎么理解，回头再查查资料</p>
+
+            </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://shengxinzhuan.github.io//post/xian-dai-xue-xi-bi-ji-xiang-liang-vectoryu-ju-zhen-matrix">
+                  <h3 class="post-title">
+                    【线代学习笔记】向量（vector）与矩阵（matrix）
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: 'c6940f67eebf5f03b2eb',
+        clientSecret: '5b0ae8139e78195143c207e72c099f5ff46a178a',
+        repo: 'shengxinzhuan.github.io',
+        owner: 'shengxinzhuan',
+        admin: ['shengxinzhuan'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

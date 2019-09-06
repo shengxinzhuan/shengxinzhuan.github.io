@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>【线代学习笔记】向量（vector）与矩阵（matrix） | 生信撰的博客</title>
+<meta name="description" content="never stop playing！！！">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://shengxinzhuan.github.io//favicon.ico?v=1567746757242">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://shengxinzhuan.github.io//styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://shengxinzhuan.github.io/">
+        <img src="https://shengxinzhuan.github.io//images/avatar.png?v=1567746757242" class="site-logo">
+        <h1 class="site-title">生信撰的博客</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      never stop playing！！！
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://shengxinzhuan.github.io//atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">【线代学习笔记】向量（vector）与矩阵（matrix）</h2>
+            <div class="post-date">2019-09-06</div>
+            
+              <div class="feature-container" style="background-image: url('https://shengxinzhuan.github.io//post-images/xian-dai-xue-xi-bi-ji-xiang-liang-vectoryu-ju-zhen-matrix.png')">
+              </div>
+            
+            <div class="post-content">
+              <p>前言：学不求一次之多，而贵在周周复省。虽然时间很零碎，但也不强求自己能一天学多少，争取每天积累一点就行。<br>
+教程：李宏毅（Hung-yi Lee）的Linear Equations视频教程<br>
+ppt地址：http://speech.ee.ntu.edu.tw/~tlkagk/courses_LA18.html<br>
+视频地址：https://www.bilibili.com/video/av31780632/?p=5<br>
+由于想系统而深入学习机器学习的东西，所以将本科没有上过的线代学习一下，所以才有了这个读书笔记。<br>
+【向量】<br>
+什么是向量？<br>
+最简单的理解就是，一组数字的集合（a set of numbers）<br>
+按照行列分法，既可以分为行向量（Row vector）以及列向量（column vector）<br>
+向量的表示方法<img src="https://shengxinzhuan.github.io//post-images/1567746379794.png" alt=""><br>
+假定某向量为V，里面有n个元素，那么按照顺序，既可以将向量中的元素表示为V1，V2......Vn<br>
+当向量的元素少于4个的时候，既可以在平面上以几何的形式表示出来，既一维到三维的表示方法<br>
+<img src="https://shengxinzhuan.github.io//post-images/1567746393586.png" alt=""><br>
+向量的运算<br>
+数乘运算（scalar multiplication）<br>
+类似于int类型数字的乘法，只不过是vector里面所有的components都与某个数相乘。</p>
+<pre><code>v = [1,2,3,4]
+c =5
+###此时v的数乘运算表示为cv，而其运算也是十分简单的
+cv = [1*5,2*5,3*5,4*5]
+</code></pre>
+<p>向量的加法（vector addition）<br>
+其实向量的加减是一个道理，即相应向量分量的加减，如何从字面理解这个意思，其实就是类似我们初高中物理里面的正交分解，力F1可以在二维轴上分解出F1x与F1y，力F2可以在二维轴上分解出F2x与F2y，然后在这个分解的坐标轴中，得到了一个很好的映射，从而将两者在该坐标轴上的关系理清，然后通过简单的加减，即可得到最后作用的结果。图例如下<br>
+<img src="https://shengxinzhuan.github.io//post-images/1567746409147.png" alt=""><br>
+向量的集合（vector set）<br>
+<img src="https://shengxinzhuan.github.io//post-images/1567746423183.png" alt=""><br>
+由不同的向量组合在一起，组成向量集合，如何理解，我们可以以只有两个元素的二维向量来简单的理解一下。<br>
+<img src="https://shengxinzhuan.github.io//post-images/1567746435617.png" alt=""><br>
+那么如何来表示这个集合呢，我们通常将这个集合以大写字母R表示，如果是2维的，表示为R2，如果是三维的，则为R3，以此类推<br>
+<img src="https://shengxinzhuan.github.io//post-images/1567746449814.png" alt=""><br>
+那么集合间是如何运算的呢？<br>
+首先，我们的运算必须是同一维度的，拿2维跟3维的进行运算，这有点超出想象。<br>
+那么这个集合的运算符合什么定律呢，看下图<br>
+<img src="https://shengxinzhuan.github.io//post-images/1567746465812.png" alt=""><br>
+<img src="https://shengxinzhuan.github.io//post-images/1567746476031.png" alt=""><br>
+【矩阵】<br>
+什么是矩阵？<br>
+矩阵，就是一组向量的集合，也就是上面的vector set<br>
+<img src="https://shengxinzhuan.github.io//post-images/1567746487641.png" alt=""><br>
+矩阵的表示<br>
+如果某矩阵有m行n列，那么我们就可以将其表示为Mmxn。记住一个原则<br>
+<img src="https://shengxinzhuan.github.io//post-images/1567746495905.png" alt=""><br>
+如何表示矩阵中的某个元素，其实也是先行后列的表示方法A矩阵的第三行，第四列的元素，表示为A34<br>
+矩阵的运算<br>
+首先是加减法，其实这很好理解，同一维度的才能进行加减，即两个矩阵具有相同的行列时才具备加减的条件<br>
+接着是数乘，其实就是向量数乘的延伸。<br>
+<img src="https://shengxinzhuan.github.io//post-images/1567746510575.png" alt=""><br>
+特殊矩阵，Zero matrix，顾名思义，都是0，可以表示为Omxn，个人认为，这就是一个多维空间中的一个奇点，有点奇妙<br>
+Identity matrix，除了对角线，其余都是零，这个也是很奇妙，在一个大于1的多维空间中，它是一条线（个人yy，不一定正确）<br>
+矩阵的转置（Transpose）<br>
+简而言之，就是行列互换（包括元素），个人觉得，这个类似于左右手的关系，即轴对称，在三维空间里，应该就是镜像的存在<br>
+<img src="https://shengxinzhuan.github.io//post-images/1567746525242.png" alt=""><br>
+<img src="https://shengxinzhuan.github.io//post-images/1567746533883.png" alt=""><br>
+视频看了一个小时，然后对着ppt边敲字边截图，又过了一个小时，果然还是有点累</p>
+
+            </div>
+            
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: 'c6940f67eebf5f03b2eb',
+        clientSecret: '5b0ae8139e78195143c207e72c099f5ff46a178a',
+        repo: 'shengxinzhuan.github.io',
+        owner: 'shengxinzhuan',
+        admin: ['shengxinzhuan'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://shengxinzhuan.github.io/</id>
     <title>生信撰的博客</title>
-    <updated>2019-09-06T04:59:11.803Z</updated>
+    <updated>2019-09-06T05:12:42.713Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://shengxinzhuan.github.io/"/>
     <link rel="self" href="https://shengxinzhuan.github.io//atom.xml"/>
@@ -10,4 +10,106 @@
     <logo>https://shengxinzhuan.github.io//images/avatar.png</logo>
     <icon>https://shengxinzhuan.github.io//favicon.ico</icon>
     <rights>All rights reserved 2019, 生信撰的博客</rights>
+    <entry>
+        <title type="html"><![CDATA[【线代学习笔记】向量与矩阵的乘法（Matrix-Vector Product）]]></title>
+        <id>https://shengxinzhuan.github.io//post/xian-dai-xue-xi-bi-ji-xiang-liang-yu-ju-zhen-de-cheng-fa-matrix-vector-product</id>
+        <link href="https://shengxinzhuan.github.io//post/xian-dai-xue-xi-bi-ji-xiang-liang-yu-ju-zhen-de-cheng-fa-matrix-vector-product">
+        </link>
+        <updated>2019-09-06T05:09:01.000Z</updated>
+        <content type="html"><![CDATA[<p>前言：学不求一次之多，而贵在周周复省。虽然时间很零碎，但也不强求自己能一天学多少，争取每天积累一点就行。<br>
+教程：李宏毅（Hung-yi Lee）的Linear Equations视频教程<br>
+ppt地址：http://speech.ee.ntu.edu.tw/~tlkagk/courses_LA18.html<br>
+视频地址：https://www.bilibili.com/video/av31780632/?p=5<br>
+由于想系统而深入学习机器学习的东西，所以将本科没有上过的线代学习一下，所以才有了这个读书笔记。<br>
+一开始看到这个英文标题其实有点懵逼，Matrix-Vector product，什么东西来着？？？<br>
+后面看到这张图，才意识到是在讲什么东西<br>
+<img src="https://shengxinzhuan.github.io//post-images/1567746635779.jpg" alt=""><br>
+原来是讲矩阵与向量相乘<br>
+那么怎么理解这个东西呢？<br>
+本来我个人的理解是这样的，矩阵A相对于向量x，其实是一个高维跟低维的，就类似面跟点的关系，通过与A相乘，就是将x以A的维度去衡量x，使得x的有一个更直观的结果呈现在面前。<br>
+后面李老师提到了Linear System的思维去理解这个东西<img src="https://shengxinzhuan.github.io//post-images/1567746657377.jpg" alt=""><br>
+emmm，果然是类似的东西<br>
+而后李老师又从两个角度对product进行了阐述，分别是row aspect跟column aspect两个层面。</p>
+<pre><code>###以解这个两个未知数组的题目为例
+x1+4x2=b1
+-3x1+2x2 = b2
+###这个东西其实就是可以写成矩阵跟向量的相乘的形式
+A=[(1，4)(-3，2)]
+###而向量则是x1与x2所组成的
+x=（x1，x2）
+###将x投进A这个Linear System里面，那么当x1等于-2，x2等于0.5时，如何进行评价
+</code></pre>
+<p>首先是Row aspect<img src="https://shengxinzhuan.github.io//post-images/1567746673135.jpg" alt=""><br>
+由于row1与x垂直，所以b1明显就为0，而row2与x相乘，结果为7，故而b2就为7<br>
+<img src="https://shengxinzhuan.github.io//post-images/1567746687775.jpg" alt=""><br>
+让row1与x相乘，得到（-2,6），让row2跟x相乘，得到（2,1），将这两个向量合起来，正好也是（0,7）<br>
+虽然角度不一样，但最终结果是一致的，而计算过程其实正是在矩阵的某一维度中分解之后取合并，这个过程其实理解了就不会很懵逼。<br>
+而矩阵能与向量相乘的前提条件，两者必须是matched的，其实也很好理解，只有在矩阵最低维度与向量相同时，两者才可能在一个向量空间中进行运算。<br>
+接着就是一些运算的法则，这个其实也蛮容易理解的<br>
+<img src="https://shengxinzhuan.github.io//post-images/1567746708320.jpg" alt=""><br>
+最后的话，提到了一个比较有意识的法则，即Ax=Bx，则A与B是相等的，这个其实我还不怎么理解，回头再查查资料</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[【线代学习笔记】向量（vector）与矩阵（matrix）]]></title>
+        <id>https://shengxinzhuan.github.io//post/xian-dai-xue-xi-bi-ji-xiang-liang-vectoryu-ju-zhen-matrix</id>
+        <link href="https://shengxinzhuan.github.io//post/xian-dai-xue-xi-bi-ji-xiang-liang-vectoryu-ju-zhen-matrix">
+        </link>
+        <updated>2019-09-06T05:03:11.000Z</updated>
+        <content type="html"><![CDATA[<p>前言：学不求一次之多，而贵在周周复省。虽然时间很零碎，但也不强求自己能一天学多少，争取每天积累一点就行。<br>
+教程：李宏毅（Hung-yi Lee）的Linear Equations视频教程<br>
+ppt地址：http://speech.ee.ntu.edu.tw/~tlkagk/courses_LA18.html<br>
+视频地址：https://www.bilibili.com/video/av31780632/?p=5<br>
+由于想系统而深入学习机器学习的东西，所以将本科没有上过的线代学习一下，所以才有了这个读书笔记。<br>
+【向量】<br>
+什么是向量？<br>
+最简单的理解就是，一组数字的集合（a set of numbers）<br>
+按照行列分法，既可以分为行向量（Row vector）以及列向量（column vector）<br>
+向量的表示方法<img src="https://shengxinzhuan.github.io//post-images/1567746379794.png" alt=""><br>
+假定某向量为V，里面有n个元素，那么按照顺序，既可以将向量中的元素表示为V1，V2......Vn<br>
+当向量的元素少于4个的时候，既可以在平面上以几何的形式表示出来，既一维到三维的表示方法<br>
+<img src="https://shengxinzhuan.github.io//post-images/1567746393586.png" alt=""><br>
+向量的运算<br>
+数乘运算（scalar multiplication）<br>
+类似于int类型数字的乘法，只不过是vector里面所有的components都与某个数相乘。</p>
+<pre><code>v = [1,2,3,4]
+c =5
+###此时v的数乘运算表示为cv，而其运算也是十分简单的
+cv = [1*5,2*5,3*5,4*5]
+</code></pre>
+<p>向量的加法（vector addition）<br>
+其实向量的加减是一个道理，即相应向量分量的加减，如何从字面理解这个意思，其实就是类似我们初高中物理里面的正交分解，力F1可以在二维轴上分解出F1x与F1y，力F2可以在二维轴上分解出F2x与F2y，然后在这个分解的坐标轴中，得到了一个很好的映射，从而将两者在该坐标轴上的关系理清，然后通过简单的加减，即可得到最后作用的结果。图例如下<br>
+<img src="https://shengxinzhuan.github.io//post-images/1567746409147.png" alt=""><br>
+向量的集合（vector set）<br>
+<img src="https://shengxinzhuan.github.io//post-images/1567746423183.png" alt=""><br>
+由不同的向量组合在一起，组成向量集合，如何理解，我们可以以只有两个元素的二维向量来简单的理解一下。<br>
+<img src="https://shengxinzhuan.github.io//post-images/1567746435617.png" alt=""><br>
+那么如何来表示这个集合呢，我们通常将这个集合以大写字母R表示，如果是2维的，表示为R2，如果是三维的，则为R3，以此类推<br>
+<img src="https://shengxinzhuan.github.io//post-images/1567746449814.png" alt=""><br>
+那么集合间是如何运算的呢？<br>
+首先，我们的运算必须是同一维度的，拿2维跟3维的进行运算，这有点超出想象。<br>
+那么这个集合的运算符合什么定律呢，看下图<br>
+<img src="https://shengxinzhuan.github.io//post-images/1567746465812.png" alt=""><br>
+<img src="https://shengxinzhuan.github.io//post-images/1567746476031.png" alt=""><br>
+【矩阵】<br>
+什么是矩阵？<br>
+矩阵，就是一组向量的集合，也就是上面的vector set<br>
+<img src="https://shengxinzhuan.github.io//post-images/1567746487641.png" alt=""><br>
+矩阵的表示<br>
+如果某矩阵有m行n列，那么我们就可以将其表示为Mmxn。记住一个原则<br>
+<img src="https://shengxinzhuan.github.io//post-images/1567746495905.png" alt=""><br>
+如何表示矩阵中的某个元素，其实也是先行后列的表示方法A矩阵的第三行，第四列的元素，表示为A34<br>
+矩阵的运算<br>
+首先是加减法，其实这很好理解，同一维度的才能进行加减，即两个矩阵具有相同的行列时才具备加减的条件<br>
+接着是数乘，其实就是向量数乘的延伸。<br>
+<img src="https://shengxinzhuan.github.io//post-images/1567746510575.png" alt=""><br>
+特殊矩阵，Zero matrix，顾名思义，都是0，可以表示为Omxn，个人认为，这就是一个多维空间中的一个奇点，有点奇妙<br>
+Identity matrix，除了对角线，其余都是零，这个也是很奇妙，在一个大于1的多维空间中，它是一条线（个人yy，不一定正确）<br>
+矩阵的转置（Transpose）<br>
+简而言之，就是行列互换（包括元素），个人觉得，这个类似于左右手的关系，即轴对称，在三维空间里，应该就是镜像的存在<br>
+<img src="https://shengxinzhuan.github.io//post-images/1567746525242.png" alt=""><br>
+<img src="https://shengxinzhuan.github.io//post-images/1567746533883.png" alt=""><br>
+视频看了一个小时，然后对着ppt边敲字边截图，又过了一个小时，果然还是有点累</p>
+]]></content>
+    </entry>
 </feed>
