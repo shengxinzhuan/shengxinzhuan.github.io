@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>【生信小课堂】snp calling之后hard-filter的参数选择 | 生信撰的博客</title>
+<title>【线代学习笔记】Having Solution or Not | 生信撰的博客</title>
 <meta name="description" content="never stop playing！！！">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -98,66 +98,37 @@
       <div class="main-container">
         <div class="content-container" data-aos="fade-up">
           <div class="post-detail">
-            <h2 class="post-title">【生信小课堂】snp calling之后hard-filter的参数选择</h2>
-            <div class="post-date">2019-09-06</div>
+            <h2 class="post-title">【线代学习笔记】Having Solution or Not</h2>
+            <div class="post-date">2019-09-11</div>
             
-              <div class="feature-container" style="background-image: url('https://shengxinzhuan.github.io//post-images/sheng-xin-xiao-ke-tang-snp-calling-zhi-hou-hard-filter-de-can-shu-xuan-ze.png')">
+              <div class="feature-container" style="background-image: url('https://shengxinzhuan.github.io//post-images/xian-dai-xue-xi-bi-ji-having-solution-or-not.jpg')">
               </div>
             
             <div class="post-content">
-              <p>现在随着三代测序价格跟重测序价格的持续走低，越来越多的全基因组等级的群体遗传文章持续发布。而当拿到一批raw data之后，通常是需要经过一系列是上游分析处理使之成为可以操作的下游raw data，这个过程就是我们经常说的snp calling的过程。对于snp是如何得到的，这里我推荐基因所明哥的一篇博文。<br>
-https://ming-lian.github.io/2019/02/08/call-snp/<br>
-该篇博文将gatk的流程说得很透彻，各位如果需要可以仔细研读一番。<br>
-对于模式生物，我们可以使用VQSR的方法进行过滤。但对于非模式生物，没有现成的snp库，通常我们都是使用hard-filter的方式进行过滤，对于参数的选择，gatk的官方给出了推荐参数，但往往推荐参数并不适合我们手头上的数据类型。如果snp过滤不当，下游的分析会异常难以进行（特指这个倒霉催返回来重新过滤一遍的我）。<br>
-在明哥的博文里面，我们可以看到这样的几张图<br>
-<img src="https://shengxinzhuan.github.io//post-images/1567747943699.png" alt=""><br>
-<img src="https://shengxinzhuan.github.io//post-images/1567747966412.png" alt=""><br>
-这几张图便是我们进行过滤参数选择的主要依据，掌握好这几张图的做法，对于我们过滤的时候至关重要。<br>
-这里介绍的方法是我这两天的劳动成果，在这里再次感谢无私的鲍大哥带我跨过坑。<br>
-第一步，我们需要从raw vcf文件中得到我们需要的信息，这里以提取QD这个值为例。</p>
-<pre><code>###使用bcftools的query模块进行提取(提取FS就将QD改为FS即可)
-bcftools query -f &quot;%QD\n&quot; raw_snp.vcf &gt; my_snp.QD
-</code></pre>
-<p>这样我们就得到了vcf文件中的QD值，接着我们需要把提取得到的QD值里面的.去掉，不然在作图的时候会提示报错，这里我使用python进行过滤</p>
-<pre><code>###vim clean_point.py
-import sys
-x = sys.argv[1]
-file = open(x, &quot;r&quot;)
-lines = file.readlines()
-for line in lines:
-     if str(line) != &quot;.\n&quot;:
-		    print(line.rstrip())
-###python clean_point.py my_snp.QD &gt; clean_snp.QD
-</code></pre>
-<p>完成过滤之后，我们就可以导进r或者python作图，这里两种方法都介绍一下<br>
-首先是python(本操作在jupyter里面进行)</p>
-<pre><code>###引入模块
-import numpy as np
-import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
-###导入数据
-df = pd.read_csv(&quot;clean_snp.QD&quot;,names=&quot;Q&quot;)
-sns.kdeplot(df[&quot;Q&quot;], shade=True)
-</code></pre>
-<p><img src="https://shengxinzhuan.github.io//post-images/1567748974860.png" alt=""><br>
-接着就是R</p>
-<pre><code>library(ggplot2)
-snp_QD &lt;- read.table(&quot;clean_snp.QD&quot;,header = FALSE)
-names(snp_QD) &lt;- (&quot;Q&quot;)
-ggplot(aes(x=Q###此处就是你要输入的那一列的列名，不要加双引号，我早上就是因为加双引号没出图，后面是潜哥帮我指出错误)，data = snp_QD) + geom_density()
-</code></pre>
-<p><img src="https://shengxinzhuan.github.io//post-images/1567749243864.png" alt=""><br>
-其他的也是照着画就行，最后还是再次感谢这两天帮过我的各位~</p>
+              <p><img src="https://shengxinzhuan.github.io//post-images/1568177342650.jpg" alt=""><br>
+如果有解，那有几个解，如果有一个解，那么就称为unique solution，如果有无穷多个解，则称为infinite solution。<br>
+那么如何知道是否有解，是这节课讨论的一个话题。<br>
+假设我们手上有n个向量，他们都是线性相关（linear dependent）的，则存在n个非全零的数，使他们相加为0<br>
+如果是线性无关（linear independent），则要令其相加为0，则只能这n个数都是0<br>
+特殊情况，0向量与其他向量是线性相关<br>
+<img src="https://shengxinzhuan.github.io//post-images/1568177989471.png" alt=""><br>
+如果column A 是线性相关的，则Ax=b会有解，并且是无穷多，反之毅然。<br>
+<img src="https://shengxinzhuan.github.io//post-images/1568178178381.jpg" alt=""><br>
+<img src="https://shengxinzhuan.github.io//post-images/1568178216788.jpg" alt=""><br>
+什么是rank<br>
+矩阵的秩（rank）指的是矩阵A的列秩是A的线性独立的纵列的极大数，通常表示为r(A)，rk(A)或rank A。<br>
+矩阵的行最简式（Nullity）=Number of columns -Rank<br>
+<img src="https://shengxinzhuan.github.io//post-images/1568178688742.jpg" alt=""><br>
+<img src="https://shengxinzhuan.github.io//post-images/1568178728665.jpg" alt=""></p>
 
             </div>
             
             
               <div class="next-post">
                 <div class="next">下一篇</div>
-                <a href="https://shengxinzhuan.github.io//post/xian-dai-xue-xi-bi-ji-xiang-liang-yu-ju-zhen-de-cheng-fa-matrix-vector-product">
+                <a href="https://shengxinzhuan.github.io//post/sheng-xin-xiao-ke-tang-snp-calling-zhi-hou-hard-filter-de-can-shu-xuan-ze">
                   <h3 class="post-title">
-                    【线代学习笔记】向量与矩阵的乘法（Matrix-Vector Product）
+                    【生信小课堂】snp calling之后hard-filter的参数选择
                   </h3>
                 </a>
               </div>

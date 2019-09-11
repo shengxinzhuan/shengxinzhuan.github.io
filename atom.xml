@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://shengxinzhuan.github.io/</id>
     <title>生信撰的博客</title>
-    <updated>2019-09-06T05:56:06.108Z</updated>
+    <updated>2019-09-11T05:12:35.785Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://shengxinzhuan.github.io/"/>
     <link rel="self" href="https://shengxinzhuan.github.io//atom.xml"/>
@@ -10,6 +10,29 @@
     <logo>https://shengxinzhuan.github.io//images/avatar.png</logo>
     <icon>https://shengxinzhuan.github.io//favicon.ico</icon>
     <rights>All rights reserved 2019, 生信撰的博客</rights>
+    <entry>
+        <title type="html"><![CDATA[【线代学习笔记】Having Solution or Not]]></title>
+        <id>https://shengxinzhuan.github.io//post/xian-dai-xue-xi-bi-ji-having-solution-or-not</id>
+        <link href="https://shengxinzhuan.github.io//post/xian-dai-xue-xi-bi-ji-having-solution-or-not">
+        </link>
+        <updated>2019-09-11T04:36:17.000Z</updated>
+        <content type="html"><![CDATA[<p><img src="https://shengxinzhuan.github.io//post-images/1568177342650.jpg" alt=""><br>
+如果有解，那有几个解，如果有一个解，那么就称为unique solution，如果有无穷多个解，则称为infinite solution。<br>
+那么如何知道是否有解，是这节课讨论的一个话题。<br>
+假设我们手上有n个向量，他们都是线性相关（linear dependent）的，则存在n个非全零的数，使他们相加为0<br>
+如果是线性无关（linear independent），则要令其相加为0，则只能这n个数都是0<br>
+特殊情况，0向量与其他向量是线性相关<br>
+<img src="https://shengxinzhuan.github.io//post-images/1568177989471.png" alt=""><br>
+如果column A 是线性相关的，则Ax=b会有解，并且是无穷多，反之毅然。<br>
+<img src="https://shengxinzhuan.github.io//post-images/1568178178381.jpg" alt=""><br>
+<img src="https://shengxinzhuan.github.io//post-images/1568178216788.jpg" alt=""><br>
+什么是rank<br>
+矩阵的秩（rank）指的是矩阵A的列秩是A的线性独立的纵列的极大数，通常表示为r(A)，rk(A)或rank A。<br>
+矩阵的行最简式（Nullity）=Number of columns -Rank<br>
+<img src="https://shengxinzhuan.github.io//post-images/1568178688742.jpg" alt=""><br>
+<img src="https://shengxinzhuan.github.io//post-images/1568178728665.jpg" alt=""></p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[【生信小课堂】snp calling之后hard-filter的参数选择]]></title>
         <id>https://shengxinzhuan.github.io//post/sheng-xin-xiao-ke-tang-snp-calling-zhi-hou-hard-filter-de-can-shu-xuan-ze</id>
